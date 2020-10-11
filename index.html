@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+    X:
+    <input id="xVal" type="number" step="any" placeholder="Enter an x coordinate">
+    <br>Y:
+    <input id="yVal" type="number" step="any" placeholder="Enter a y coordinate">
+    <br><br>
+    <button id="submit">Create your graph!</button>
+    <div id="chartContainer" style="height: 300px; width: 100%;">
+    </div>
+</body>
+
+<head>
+    <script type="text/javascript">
+        window.onload = function() {
+            var dps = []; 
+            var chart = new CanvasJS.Chart("chartContainer", {
+                title: {
+                    text: "Graph Creator"
+                },
+                data: [{
+                    type: "line",
+                    dataPoints: dps
+                }]
+            });
+
+            function createDataPoints() {
+                xValue = Number(document.getElementById("xVal").value);
+                yValue = Number(document.getElementById("yVal").value);
+                dps.push({
+                    x: xValue,
+                    y: yValue
+                });
+                chart.render();
+            }
+
+            var submit = document.getElementById("submit");
+            submit.addEventListener("click", createDataPoints);
+        }
+    </script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+</head>
+
+</html>
